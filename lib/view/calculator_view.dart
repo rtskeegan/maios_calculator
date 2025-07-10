@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:maios_calculator/widgets/drawer_history.dart';
 import 'package:maios_calculator/data/button_values.dart';
 
 //##########TO DO##########
@@ -34,27 +36,10 @@ class _CalculatorViewState extends State<CalculatorView> {
       drawer: SafeArea(
         child: Drawer(
           backgroundColor: Colors.grey,
-          child: equationHistory.isEmpty
-              ? Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [Icon(Icons.timer_rounded), Text("No History")],
-                  ),
-                )
-              : ListView.builder(
-                  itemCount: equationHistory.length,
-                  itemBuilder: (context, index) {
-                    return Card(
-                      child: Column(
-                        children: [
-                          Center(child: Text(equationHistory[index])),
-                          Center(child: Text(resultHistory[index])),
-                        ],
-                      ),
-                    );
-                  },
-                ),
+          child: DrawerHistory(
+            equationHistory: equationHistory,
+            resultHistory: resultHistory,
+          ),
         ),
       ),
       body: Column(
@@ -234,13 +219,13 @@ class _CalculatorViewState extends State<CalculatorView> {
       return;
     }
     var number = leftOperand;
-    var result;
+    num? result;
     if (int.tryParse(number) == double.tryParse(number)) {
       result = int.tryParse(number);
     } else {
       result = double.tryParse(number);
     }
-    leftOperand = (result * -1).toString();
+    leftOperand = (result! * -1).toString();
     setState(() {});
   }
 
