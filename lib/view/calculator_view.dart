@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:maios_calculator/widgets/drawer_history.dart';
+import 'package:maios_calculator/widgets/calc_output.dart';
 import 'package:maios_calculator/data/button_values.dart';
 
 //##########TO DO##########
@@ -45,31 +46,11 @@ class _CalculatorViewState extends State<CalculatorView> {
       body: Column(
         children: [
           Expanded(
-            child: Container(
-              alignment: Alignment.bottomRight,
-              padding: EdgeInsets.all(16),
-              child: FittedBox(
-                fit: BoxFit.scaleDown,
-                child: Column(
-                  children: [
-                    Text(
-                      textAlign: TextAlign.right,
-                      previousCalculation.isEmpty ? "" : previousCalculation,
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Text(
-                      "$leftOperand$operator$rightOperand".isEmpty
-                          ? "0"
-                          : "$leftOperand$operator$rightOperand",
-                      style: const TextStyle(
-                        fontSize: 48,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+            child: CalcOutput(
+              leftOperand: leftOperand,
+              operator: operator,
+              rightOperand: rightOperand,
+              previousCalculation: previousCalculation,
             ),
           ),
           Flexible(
