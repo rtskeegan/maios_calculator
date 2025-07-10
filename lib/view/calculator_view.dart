@@ -6,7 +6,6 @@ import 'package:maios_calculator/data/button_values.dart';
 //Fix styling of immediate history above output
 //Move calc buttons up from bottom of screen
 //Make cards in history drawer deletable?
-//Fix division by 0
 
 class CalculatorView extends StatefulWidget {
   const CalculatorView({super.key});
@@ -182,17 +181,27 @@ class _CalculatorViewState extends State<CalculatorView> {
         result = left * right;
         break;
       case Btn.divide:
+        //Cannot divide by 0
+        if (right == 0) {
+          break;
+        }
         result = left / right;
         break;
       default:
     }
-    equationHistory.add(previousCalculation);
-    resultHistory.add(result.toString());
     setState(() {
       leftOperand = result.toString();
       if (leftOperand.endsWith(".0")) {
         leftOperand = leftOperand.substring(0, leftOperand.length - 2);
       }
+      if (operator == Btn.divide && right == 0) {
+        leftOperand = "Cannot divide by 0";
+        operator = "";
+        rightOperand = "";
+        return;
+      }
+      equationHistory.add(previousCalculation);
+      resultHistory.add(result.toString());
       operator = "";
       rightOperand = "";
     });
