@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:maios_calculator/data/button_values.dart';
 
+//##########TO DO##########
+//Break up widgets into own files
+//Fix styling of immediate history above output
+//Move calc buttons up from bottom of screen
+//Make cards in history drawer deletable?
+//Fix division by 0
+
 class CalculatorView extends StatefulWidget {
   const CalculatorView({super.key});
 
@@ -13,7 +20,8 @@ class _CalculatorViewState extends State<CalculatorView> {
   String operator = "";
   String rightOperand = "";
   String previousCalculation = "";
-  List<String> calcHistory = [];
+  List<String> equationHistory = [];
+  List<String> resultHistory = [];
 
   @override
   Widget build(BuildContext context) {
@@ -27,15 +35,27 @@ class _CalculatorViewState extends State<CalculatorView> {
       drawer: SafeArea(
         child: Drawer(
           backgroundColor: Colors.grey,
-          child: ListView.builder(
-            itemCount: calcHistory.length,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: Center(child: Text(calcHistory[index])),
-              );
-            },
-          ),
+          child: equationHistory.isEmpty
+              ? Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [Icon(Icons.timer_rounded), Text("No History")],
+                  ),
+                )
+              : ListView.builder(
+                  itemCount: equationHistory.length,
+                  itemBuilder: (context, index) {
+                    return Card(
+                      child: Column(
+                        children: [
+                          Center(child: Text(equationHistory[index])),
+                          Center(child: Text(resultHistory[index])),
+                        ],
+                      ),
+                    );
+                  },
+                ),
         ),
       ),
       body: Column(
@@ -166,8 +186,8 @@ class _CalculatorViewState extends State<CalculatorView> {
         break;
       default:
     }
-    calcHistory.add(previousCalculation);
-    calcHistory.add(result.toString());
+    equationHistory.add(previousCalculation);
+    resultHistory.add(result.toString());
     setState(() {
       leftOperand = result.toString();
       if (leftOperand.endsWith(".0")) {
