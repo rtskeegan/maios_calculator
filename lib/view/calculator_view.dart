@@ -32,11 +32,11 @@ class _CalculatorViewState extends State<CalculatorView> {
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.black,
-        iconTheme: IconThemeData(color: Colors.amber),
+        iconTheme: IconThemeData(color: Color.fromARGB(255, 255, 170, 11)),
       ),
       drawer: SafeArea(
         child: Drawer(
-          backgroundColor: Colors.grey,
+          backgroundColor: Color.fromARGB(255, 28, 28, 28),
           child: DrawerHistory(
             equationHistory: equationHistory,
             resultHistory: resultHistory,
@@ -246,7 +246,7 @@ class _CalculatorViewState extends State<CalculatorView> {
   // Determine button color based on button contents
   Color getBtnColor(value) {
     return [Btn.ac, Btn.posNeg, Btn.percent].contains(value)
-        ? Colors.blueGrey
+        ? Color.fromARGB(255, 92, 92, 95)
         : [
             Btn.divide,
             Btn.multiply,
@@ -254,7 +254,7 @@ class _CalculatorViewState extends State<CalculatorView> {
             Btn.add,
             Btn.equal,
           ].contains(value)
-        ? Colors.amber
-        : Colors.grey.shade700;
+        ? Color.fromARGB(255, 255, 159, 10)
+        : Color.fromARGB(255, 42, 42, 44);
   }
 }

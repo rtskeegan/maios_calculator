@@ -24,10 +24,21 @@ class DrawerHistory extends StatelessWidget {
             itemCount: equationHistory.length,
             itemBuilder: (context, index) {
               return Card(
+                color: Color.fromARGB(255, 28, 28, 28),
                 child: Column(
                   children: [
-                    Center(child: Text(equationHistory[index])),
-                    Center(child: Text(resultHistory[index])),
+                    Center(
+                      child: Text(
+                        equationHistory[index],
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    Center(
+                      child: Text(
+                        resultHistory[index],
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
                   ],
                 ),
               );
