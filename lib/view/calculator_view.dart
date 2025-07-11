@@ -191,19 +191,39 @@ class _CalculatorViewState extends State<CalculatorView> {
 
   //Positive Negative
   void positiveNegative() {
-    if (leftOperand.isNotEmpty &&
+    String number;
+    num? result;
+    //Determine which side of equation to apply pos/neg
+    if (leftOperand.isNotEmpty && operator.isEmpty && rightOperand.isEmpty) {
+      number = leftOperand;
+    } else if (leftOperand.isNotEmpty &&
+        operator.isNotEmpty &&
+        rightOperand.isEmpty) {
+      number = leftOperand;
+    } else if (leftOperand.isNotEmpty &&
         operator.isNotEmpty &&
         rightOperand.isNotEmpty) {
+      number = rightOperand;
+    } else {
       return;
     }
-    var number = leftOperand;
-    num? result;
     if (int.tryParse(number) == double.tryParse(number)) {
       result = int.tryParse(number);
     } else {
       result = double.tryParse(number);
     }
-    leftOperand = (result! * -1).toString();
+    //There is certainly a way to set the appropriate side to pos/neg without repeating the if checks
+    if (leftOperand.isNotEmpty && operator.isEmpty && rightOperand.isEmpty) {
+      leftOperand = (result! * -1).toString();
+    } else if (leftOperand.isNotEmpty &&
+        operator.isNotEmpty &&
+        rightOperand.isEmpty) {
+      leftOperand = (result! * -1).toString();
+    } else if (leftOperand.isNotEmpty &&
+        operator.isNotEmpty &&
+        rightOperand.isNotEmpty) {
+      rightOperand = (result! * -1).toString();
+    }
     setState(() {});
   }
 
@@ -220,7 +240,6 @@ class _CalculatorViewState extends State<CalculatorView> {
   void appendValue(value) {
     // If operator is tapped and decimal is NOT tapped
     if (value != Btn.decimal && int.tryParse(value) == null) {
-      //
       if (operator.isNotEmpty && rightOperand.isNotEmpty) {
         calculate();
       }
