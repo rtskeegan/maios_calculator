@@ -238,6 +238,13 @@ class _CalculatorViewState extends State<CalculatorView> {
   }
 
   void appendValue(value) {
+    if (leftOperand == "Cannot divide by 0") {
+      allClear();
+      if (int.tryParse(value) != null) {
+        leftOperand += value;
+      }
+      return;
+    }
     // If operator is tapped and decimal is NOT tapped
     if (value != Btn.decimal && int.tryParse(value) == null) {
       if (operator.isNotEmpty && rightOperand.isNotEmpty) {
