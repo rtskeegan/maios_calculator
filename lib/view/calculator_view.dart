@@ -43,40 +43,37 @@ class _CalculatorViewState extends State<CalculatorView> {
           ),
         ),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: CalcOutput(
-              leftOperand: leftOperand,
-              operator: operator,
-              rightOperand: rightOperand,
-              previousCalculation: previousCalculation,
-            ),
-          ),
-          Flexible(
-            child: Container(
-              alignment: Alignment.bottomCenter,
-              child: Wrap(
-                children: Btn.buttonValues
-                    .map(
-                      (value) => SizedBox(
-                        width: screenSize.width / 4,
-                        height: screenSize.width / 5,
-                        child: buildButton(value),
-                      ),
-                    )
-                    .toList(),
+      body: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
+              child: CalcOutput(
+                leftOperand: leftOperand,
+                operator: operator,
+                rightOperand: rightOperand,
+                previousCalculation: previousCalculation,
               ),
             ),
-          ),
-        ],
+            Wrap(
+              children: Btn.buttonValues
+                  .map(
+                    (value) => SizedBox(
+                      width: screenSize.width / 4,
+                      height: screenSize.width / 5,
+                      child: buildButton(value),
+                    ),
+                  )
+                  .toList(),
+            ),
+          ],
+        ),
       ),
     );
   }
 
   Widget buildButton(value) {
     return Padding(
-      padding: const EdgeInsets.all(4.0),
+      padding: const EdgeInsets.all(2.0),
       child: Material(
         color: getBtnColor(value),
         clipBehavior: Clip.hardEdge,
@@ -86,7 +83,7 @@ class _CalculatorViewState extends State<CalculatorView> {
           child: Center(
             child: Text(
               value,
-              style: TextStyle(color: Colors.white, fontSize: 24),
+              style: TextStyle(color: Colors.white, fontSize: 36),
             ),
           ),
         ),
