@@ -29,17 +29,23 @@ class DrawerHistory extends StatelessWidget {
               return Card(
                 color: Color.fromARGB(255, 28, 28, 28),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Center(
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
                       child: Text(
                         equationHistory[index],
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Color.fromARGB(255, 135, 134, 139),
+                        ),
                       ),
                     ),
-                    Center(
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
                       child: Text(
                         resultHistory[index],
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(fontSize: 18, color: Colors.white),
                       ),
                     ),
                   ],
