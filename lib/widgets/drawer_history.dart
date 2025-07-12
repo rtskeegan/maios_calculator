@@ -26,29 +26,40 @@ class DrawerHistory extends StatelessWidget {
         : ListView.builder(
             itemCount: equationHistory.length,
             itemBuilder: (context, index) {
-              return Card(
-                color: Color.fromARGB(255, 28, 28, 28),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Text(
-                        equationHistory[index],
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Color.fromARGB(255, 135, 134, 139),
+              return Container(
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 28, 28, 28),
+                  border: Border(
+                    bottom: BorderSide(
+                      width: 1,
+                      color: Color.fromARGB(255, 135, 134, 139),
+                    ),
+                  ),
+                ),
+                child: Container(
+                  margin: EdgeInsets.only(left: 16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Text(
+                          equationHistory[index],
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Color.fromARGB(255, 135, 134, 139),
+                          ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Text(
-                        resultHistory[index],
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Text(
+                          resultHistory[index],
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               );
             },
