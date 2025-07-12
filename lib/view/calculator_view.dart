@@ -7,7 +7,6 @@ import 'package:maios_calculator/data/button_values.dart';
 //##########TO DO##########
 //Break up widgets into own files
 //Fix styling of immediate history above output
-//Move calc buttons up from bottom of screen
 //Make cards in history drawer deletable?
 
 class CalculatorView extends StatefulWidget {

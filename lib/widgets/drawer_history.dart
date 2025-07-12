@@ -17,7 +17,10 @@ class DrawerHistory extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: [Icon(Icons.timer_rounded), Text("No History")],
+              children: [
+                Icon(Icons.timer_rounded, color: Colors.white),
+                Text("No History", style: TextStyle(color: Colors.white)),
+              ],
             ),
           )
         : ListView.builder(

@@ -21,24 +21,29 @@ class CalcOutput extends StatelessWidget {
       padding: EdgeInsets.all(16),
       child: FittedBox(
         fit: BoxFit.scaleDown,
-        child: Column(
-          children: [
-            Text(
-              textAlign: TextAlign.right,
-              previousCalculation.isEmpty ? "" : previousCalculation,
-              style: TextStyle(color: Colors.white),
-            ),
-            Text(
-              "$leftOperand$operator$rightOperand".isEmpty
-                  ? "0"
-                  : "$leftOperand$operator$rightOperand",
-              style: const TextStyle(
-                fontSize: 48,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+        child: IntrinsicWidth(
+          child: Column(
+            children: [
+              Align(
+                alignment: Alignment.centerRight,
+                child: Text(
+                  textAlign: TextAlign.right,
+                  previousCalculation.isEmpty ? "" : previousCalculation,
+                  style: TextStyle(fontSize: 24, color: Colors.white),
+                ),
               ),
-            ),
-          ],
+              Text(
+                "$leftOperand$operator$rightOperand".isEmpty
+                    ? "0"
+                    : "$leftOperand$operator$rightOperand",
+                style: const TextStyle(
+                  fontSize: 48,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
