@@ -4,11 +4,6 @@ import 'package:maios_calculator/widgets/drawer_history.dart';
 import 'package:maios_calculator/widgets/calc_output.dart';
 import 'package:maios_calculator/data/button_values.dart';
 
-//##########TO DO##########
-//Break up widgets into own files
-//Make cards in history drawer deletable?
-//Dynamically swap between AC and backspace button
-
 class CalculatorView extends StatefulWidget {
   const CalculatorView({super.key});
 
@@ -17,7 +12,7 @@ class CalculatorView extends StatefulWidget {
 }
 
 class _CalculatorViewState extends State<CalculatorView> {
-  String leftOperand = '';
+  String leftOperand = "";
   String operator = "";
   String rightOperand = "";
   String previousCalculation = "";
@@ -82,7 +77,11 @@ class _CalculatorViewState extends State<CalculatorView> {
           child: Center(
             child: Text(
               value,
-              style: TextStyle(color: Colors.white, fontSize: 36),
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 36,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),
@@ -171,6 +170,9 @@ class _CalculatorViewState extends State<CalculatorView> {
 
   //Percentage
   void convertToPercentage() {
+    if (leftOperand.isEmpty || leftOperand == "0") {
+      return;
+    }
     if (leftOperand.isNotEmpty &&
         operator.isNotEmpty &&
         rightOperand.isNotEmpty) {

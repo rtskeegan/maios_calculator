@@ -15,7 +15,7 @@ class Btn {
   static const String n2 = '2';
   static const String n3 = '3';
   static const String add = '+';
-  static const String calcButton = 'ToDo';
+  static const String calcButton = '\u22ef';
   static const String n0 = '0';
   static const String decimal = '.';
   static const String equal = '=';
