@@ -29,7 +29,10 @@ class CalcOutput extends StatelessWidget {
                 child: Text(
                   textAlign: TextAlign.right,
                   previousCalculation.isEmpty ? "" : previousCalculation,
-                  style: TextStyle(fontSize: 24, color: Colors.white),
+                  style: TextStyle(
+                    fontSize: 24,
+                    color: Color.fromARGB(255, 92, 92, 95),
+                  ),
                 ),
               ),
               Text(
@@ -37,7 +40,7 @@ class CalcOutput extends StatelessWidget {
                     ? "0"
                     : "$leftOperand$operator$rightOperand",
                 style: const TextStyle(
-                  fontSize: 48,
+                  fontSize: 64,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),

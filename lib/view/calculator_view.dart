@@ -38,50 +38,51 @@ class _CalculatorViewState extends State<CalculatorView> {
         ),
       ),
       body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: CalcOutput(
-                leftOperand: leftOperand,
-                operator: operator,
-                rightOperand: rightOperand,
-                previousCalculation: previousCalculation,
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 30.0),
+          child: Column(
+            children: [
+              Expanded(
+                child: CalcOutput(
+                  leftOperand: leftOperand,
+                  operator: operator,
+                  rightOperand: rightOperand,
+                  previousCalculation: previousCalculation,
+                ),
               ),
-            ),
-            Wrap(
-              children: Btn.buttonValues
-                  .map(
-                    (value) => SizedBox(
-                      width: screenSize.width / 4,
-                      height: screenSize.width / 5,
-                      child: buildButton(value),
-                    ),
-                  )
-                  .toList(),
-            ),
-          ],
+              Wrap(
+                runSpacing: 10.0,
+                children: Btn.buttonValues
+                    .map(
+                      (value) => SizedBox(
+                        width: screenSize.width / 4.3,
+                        height: screenSize.width / 4.7,
+                        child: buildButton(value),
+                      ),
+                    )
+                    .toList(),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
   Widget buildButton(value) {
-    return Padding(
-      padding: const EdgeInsets.all(2.0),
-      child: Material(
-        color: getBtnColor(value),
-        clipBehavior: Clip.hardEdge,
-        shape: CircleBorder(),
-        child: InkWell(
-          onTap: () => onBtnTap(value),
-          child: Center(
-            child: Text(
-              value,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 36,
-                fontWeight: FontWeight.bold,
-              ),
+    return Material(
+      color: getBtnColor(value),
+      clipBehavior: Clip.hardEdge,
+      shape: CircleBorder(),
+      child: InkWell(
+        onTap: () => onBtnTap(value),
+        child: Center(
+          child: Text(
+            value,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 36,
+              fontWeight: FontWeight.bold,
             ),
           ),
         ),
