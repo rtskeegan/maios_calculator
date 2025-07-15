@@ -1,5 +1,6 @@
 class Btn {
   static const String ac = 'AC';
+  static const String del = "\u232b";
   static const String posNeg = '+/-';
   static const String percent = '%';
   static const String divide = '÷';
@@ -20,8 +21,31 @@ class Btn {
   static const String decimal = '.';
   static const String equal = '=';
 
-  static const List<String> buttonValues = [
+  static const List<String> buttonValuesAC = [
     ac,
+    posNeg,
+    percent,
+    divide,
+    n7,
+    n8,
+    n9,
+    multiply,
+    n4,
+    n5,
+    n6,
+    subtract,
+    n1,
+    n2,
+    n3,
+    add,
+    calcButton,
+    n0,
+    decimal,
+    equal,
+  ];
+
+  static const List<String> buttonValuesDel = [
+    del,
     posNeg,
     percent,
     divide,

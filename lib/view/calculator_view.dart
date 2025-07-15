@@ -18,10 +18,18 @@ class _CalculatorViewState extends State<CalculatorView> {
   String previousCalculation = "";
   List<String> equationHistory = [];
   List<String> resultHistory = [];
+  List<String> calcOption = [];
+
+  @override
+  void initState() {
+    super.initState();
+    calcOption = Btn.buttonValuesAC;
+  }
 
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
@@ -52,7 +60,7 @@ class _CalculatorViewState extends State<CalculatorView> {
               ),
               Wrap(
                 runSpacing: 10.0,
-                children: Btn.buttonValues
+                children: calcOption
                     .map(
                       (value) => SizedBox(
                         width: screenSize.width / 4.3,
@@ -94,6 +102,10 @@ class _CalculatorViewState extends State<CalculatorView> {
   void onBtnTap(value) {
     if (value == Btn.ac) {
       allClear();
+      return;
+    }
+    if (value == Btn.del) {
+      delete();
       return;
     }
     if (value == Btn.posNeg) {
@@ -152,6 +164,7 @@ class _CalculatorViewState extends State<CalculatorView> {
       default:
     }
     setState(() {
+      calcOption = Btn.buttonValuesAC;
       leftOperand = result.toString();
       if (leftOperand.endsWith(".0")) {
         leftOperand = leftOperand.substring(0, leftOperand.length - 2);
@@ -229,6 +242,19 @@ class _CalculatorViewState extends State<CalculatorView> {
     setState(() {});
   }
 
+  //Delete
+  void delete() {
+    setState(() {
+      if (rightOperand.isNotEmpty) {
+        rightOperand = rightOperand.substring(0, rightOperand.length - 1);
+      } else if (operator.isNotEmpty) {
+        operator = "";
+      } else if (leftOperand.isNotEmpty) {
+        leftOperand = leftOperand.substring(0, leftOperand.length - 1);
+      }
+    });
+  }
+
   //All Clear
   void allClear() {
     setState(() {
@@ -268,12 +294,14 @@ class _CalculatorViewState extends State<CalculatorView> {
       }
       rightOperand += value;
     }
-    setState(() {});
+    setState(() {
+      calcOption = Btn.buttonValuesDel;
+    });
   }
 
   // Determine button color based on button contents
   Color getBtnColor(value) {
-    return [Btn.ac, Btn.posNeg, Btn.percent].contains(value)
+    return [Btn.ac, Btn.del, Btn.posNeg, Btn.percent].contains(value)
         ? Color.fromARGB(255, 92, 92, 95)
         : [
             Btn.divide,
