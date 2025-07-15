@@ -29,7 +29,9 @@ class _CalculatorViewState extends State<CalculatorView> {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-
+    if (leftOperand == "0" || leftOperand.isEmpty) {
+      calcOption = Btn.buttonValuesAC;
+    }
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
